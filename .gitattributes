@@ -1,0 +1,7 @@
+# Line endings: LF in the repo, CRLF only where Windows needs it (22.11.2026)
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.vbs text eol=crlf
+*.reg text eol=crlf
