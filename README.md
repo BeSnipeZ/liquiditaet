@@ -1,8 +1,8 @@
-# liquiditaet
+# liquidity
 
 Reads the chart that is open in the TradingView desktop app and lists where the
 liquidity sits: session highs and lows, equal highs/lows and fair value gaps,
-each with its status (open, taken, filled, inverted) and the time it formed.
+each with its status (open, swept, tapped, filled, inverted) and the time it formed.
 
 Built for intraday Nasdaq futures, but it works on whatever symbol is on the chart.
 
@@ -17,15 +17,15 @@ Built for intraday Nasdaq futures, but it works on whatever symbol is on the cha
    are computed from the candles in New York time, so daylight-saving shifts
    between Europe and the US are handled.
 4. **Status** is recomputed from the candles instead of trusting the indicator:
-   the first candle that trades through a level marks it as taken, and an FVG is
+   the first candle that trades through a level marks it as swept, and an FVG is
    traced back to the candle that created it.
 
 ## Usage
 
 ```
-python liquiditaet.py            # readable table
-python liquiditaet.py --json     # machine-readable, used by other tools
-python liquiditaet.py --alle     # also show filled / inverted gaps
+python liquidity.py            # readable table
+python liquidity.py --json     # machine-readable, used by other tools
+python liquidity.py --all     # also show filled / inverted gaps
 ```
 
 Requires TradingView Desktop started with `--remote-debugging-port=9222` and
@@ -34,10 +34,8 @@ Python 3.9+ with `tradingview_scraper`.
 ## Tests
 
 ```
-python test_liquiditaet.py
+python test_liquidity.py
 ```
 
 The self-test covers the pure logic (trading-day boundaries, session levels,
 level status, FVG status) with synthetic candles, no chart and no network needed.
-
-Code comments and output are in German.
